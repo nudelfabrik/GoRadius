@@ -13,9 +13,9 @@ type Database struct {
 	sqlite *sql.DB
 }
 
-func NewDatabase() *Database {
+func NewDatabase(location string) *Database {
 	db := &Database{}
-	err := db.init()
+	err := db.init(location)
 	if err != nil {
 		fmt.Println(err)
 		panic(err)
@@ -23,10 +23,10 @@ func NewDatabase() *Database {
 	return db
 }
 
-func (db *Database) init() error {
+func (db *Database) init(location string) error {
 
 	var err error
-	db.sqlite, err = sql.Open("sqlite3", "/Users/bene/Downloads/freeradius.db")
+	db.sqlite, err = sql.Open("sqlite3", location)
 
 	return err
 }
